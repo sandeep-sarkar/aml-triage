@@ -1,0 +1,19 @@
+# Go
+/bin/
+*.exe
+*.test
+*.out
+
+# Env / secrets
+.env
+*.env.local
+
+# Generated data (keep schema, not large generated files, adjust as needed)
+data/alerts.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

@@ -1,0 +1,18 @@
+model_list:
+  - model_name: triage-model
+    litellm_params:
+      model: gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+  # Add once vLLM is running (step 6):
+  # - model_name: triage-model-local
+  #   litellm_params:
+  #     model: openai/local-model
+  #     api_base: http://vllm:8000/v1
+  #     api_key: none
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-triage-dev
