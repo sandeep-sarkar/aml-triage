@@ -19,5 +19,20 @@ type PolicyEngine struct {
 
 func (e PolicyEngine) Assess(a alert.Alert) []Match {
 	// TODO: loop over e.Rules, call Evaluate, collect Matches where triggered == true
-	return nil
+
+	matches := make([]Match, 0)
+
+	for _, rule := range e.Rules {
+		triggered, reasoning, policyRef := rule.Evaluate(a)
+		if triggered {
+			match := Match{
+				RuleName:  rule.Name(),
+				Reasoning: reasoning,
+				PolicyRef: policyRef,
+			}
+			matches = append(matches, match)
+		}
+	}
+
+	return matches
 }

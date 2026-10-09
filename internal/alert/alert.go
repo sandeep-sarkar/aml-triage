@@ -3,12 +3,12 @@ package alert
 import "time"
 
 type Transaction struct {
-	ID        string    `json:"id"`
-	Timestamp time.Time `json:"timestamp"`
-	AmountGBP float64   `json:"amount_gbp"`
-	Direction string    `json:"direction"` // "inbound" | "outbound"
-	Counterparty string `json:"counterparty"`
-	Channel   string    `json:"channel"` // "wire" | "card" | "cash" | "crypto"
+	ID           string    `json:"id"`
+	Timestamp    time.Time `json:"timestamp"`
+	AmountGBP    float64   `json:"amount_gbp"`
+	Direction    string    `json:"direction"` // "inbound" | "outbound"
+	Counterparty string    `json:"counterparty"`
+	Channel      string    `json:"channel"` // "wire" | "card" | "cash" | "crypto"
 }
 
 type Customer struct {
@@ -32,9 +32,8 @@ type Alert struct {
 
 // Disposition is what both the baseline scorer and the LLM must produce.
 type Disposition struct {
-	AlertID    string `json:"alert_id"`
-	Decision   string `json:"decision"` // "escalate" | "close"
-	Reasoning  string `json:"reasoning"`
-	PolicyRef  string `json:"policy_ref,omitempty"`
-	Confidence float64 `json:"confidence,omitempty"`
+	AlertID   string `json:"alert_id"`
+	Decision  string `json:"decision"` // "escalate" | "close"
+	Reasoning string `json:"reasoning"`
+	PolicyRef string `json:"policy_ref,omitempty"`
 }

@@ -23,4 +23,19 @@ func (s ScoreEngine) Score(a alert.Alert) (alert.Disposition, error) {
 	//Todo: combine matches into one Reasoning string and one PolicyRef
 	// (e.g. join reasoning with "; ", join policy refs with ", ")
 	// return Decision: "escalate"
+	reasoning := matches[0].Reasoning
+	policyRef := matches[0].PolicyRef
+
+	for _, match := range matches[1:] {
+		reasoning = fmt.Sprintf("%s, %s", reasoning, match.Reasoning)
+		policyRef = fmt.Sprintf("%s, %s", policyRef, match.PolicyRef)
+	}
+
+	alertDisposition := alert.Disposition{
+		AlertID:   a.ID,
+		Decision:  "escalate",
+		Reasoning: reasoning,
+		PolicyRef: policyRef,
+	}
+	return alertDisposition, nil
 }
